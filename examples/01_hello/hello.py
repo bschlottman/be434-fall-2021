@@ -16,7 +16,7 @@ def main():
 	args = get_args()
 	print('Hello, ' + args.name + '!')
 	
-if _name_ == '_main_':
+if __name__ == '__main__':
 	main()
 	
 
