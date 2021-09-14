@@ -32,16 +32,16 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
-    numbers = args.number
+    nums = args.number
 
     line = ''
-    if len(numbers) == 1:
-        line = str(numbers[0])
+    if len(nums) == 1:
+        line = str(nums[0])
     else:
-        string_ints = [str(int) for int in numbers]
+        string_ints = [str(int) for int in nums]
         line = ' + '.join(string_ints)
 
-    print('{} = {}'.format(line,str(sum(numbers))))
+    print('{} = {}'.format(line,str(sum(nums))))
 
 
 # --------------------------------------------------
