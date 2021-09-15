@@ -34,14 +34,15 @@ def main():
     args = get_args()
     nums = args.number
 
-    line = ''
-    if len(nums) == 1:
-        line = str(nums[0])
-    else:
-        string_ints = [str(int) for int in nums]
-        line = ' + '.join(string_ints)
+    # line = ''
+    # if len(nums) == 1:
+    #     line = str(nums[0])
+    # else:
+    #     string_ints = [str(intgrs) for intgrs in nums]
+    #     line = ' + '.join(string_ints)
 
-    print('{} = {}'.format(line,str(sum(nums))))
+    # print('{} = {}'.format(line,str(sum(nums))))
+    print('{} = {}'.format(' + '.join(map(str, args.number)), sum(args.number)))
 
 
 # --------------------------------------------------
