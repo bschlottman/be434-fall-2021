@@ -44,7 +44,7 @@ def main():
         if word in syl:
             print('{}, {}'.format(word, syl.get(word)))
         else:
-            print("I don't know \"{}\"".format(word))
+            print('I don\'t know "{}"'.format(word))
 
 
 # --------------------------------------------------
