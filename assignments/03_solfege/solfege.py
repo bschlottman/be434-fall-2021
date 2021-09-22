@@ -16,11 +16,7 @@ def get_args():
         description='Solfege',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('Solfege',
-                        metavar='str',
-                        nargs='+',
-                        type=str,
-                        help='Solfege')
+    parser.add_argument('Solfege', metavar='str', nargs='+', help='Solfege')
 
     return parser.parse_args()
 
