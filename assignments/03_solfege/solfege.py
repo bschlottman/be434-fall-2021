@@ -35,7 +35,8 @@ def main():
         'Derp': 'I forgot the woooords',
         'Sol': 'A needle pulling thread',
         'La': 'A note to follow sol',
-        'Ti': 'A drink with jam and bread'}
+        'Ti': 'A drink with jam and bread'
+    }
     for word in Solfege:
         if word in syl:
             print('{}, {}'.format(word, syl.get(word)))
