@@ -22,14 +22,19 @@ def get_args():
                         metavar='text',
                         help='Input string or file')
 
-    parser.add_argument('-o str',
-                        '--outfile str',
+    parser.add_argument('-o',
+                        '--outfile',
                         help='Output filename',
                         metavar='str',
                         type=str,
                         default='')
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if os.path.isfile(args.text):
+        args.text = open(args.text).read().rstrip()
+
+    return args
 
 
 # --------------------------------------------------
@@ -37,8 +42,10 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
-
-    print()
+    if args.outfile:
+        open(args.outfile, 'wt').write(args.text.upper())
+    else:
+        print(args.text.upper())
 
 
 # --------------------------------------------------
