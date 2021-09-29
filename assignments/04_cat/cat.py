@@ -37,7 +37,7 @@ def main():
 
     args = get_args()
 
-# 1. The first `for` loop will iterate over the file arguments
+    # 1. The first `for` loop will iterate over the file arguments
     for fh in args.input:
         # 2. The second `for` loop will iterate over the lines in each file
         for l_num, line in enumerate(fh, start=1):
