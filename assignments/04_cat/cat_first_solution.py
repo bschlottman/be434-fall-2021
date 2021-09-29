@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Author : bschlottman <bschlottman@email.arizona.edu>
-Date   : 2021-09-29
-Purpose: cat
+Date   : 2021-09-28
+Purpose: meow
 """
 
 import argparse
@@ -16,32 +16,33 @@ def get_args():
         description='Python cat',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('files',
-                        help='Input file(s)',
+    parser.add_argument('input',
                         metavar='FILE',
                         nargs='+',
                         type=argparse.FileType('rt'),
-                        default=None)
+                        help='Input file(s)')
 
     parser.add_argument('-n',
                         '--number',
                         help='Number the lines',
-                        action='store_true')
+                        action='store_true',
+                        default='FALSE')
+
     return parser.parse_args()
 
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Make a ski noise here"""
 
     args = get_args()
 
-    for fh in args.files:
-        line_num = 0
-        for line in fh:
-            line_num += 1
-            if args.number:
-                print('{:>6}\t{}'.format(line_num, line.rstrip()))
+    # 1. The first `for` loop will iterate over the file arguments
+    for fh in args.input:
+        # 2. The second `for` loop will iterate over the lines in each file
+        for l_num, line in enumerate(fh, start=1):
+            if args.number is True:
+                print("     {}\t{}".format(l_num, line), end='')
             else:
                 print(line, end='')
 
