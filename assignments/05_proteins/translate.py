@@ -43,9 +43,8 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
-    print('seq =', args.sequence)
-    print('codons =', args.codons)
-    print('outfile =', args.outfile)
+    for line in args.codons:
+        print(line.rstrip().split())
 
 # --------------------------------------------------
 if __name__ == '__main__':
