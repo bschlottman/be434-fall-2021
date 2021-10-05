@@ -7,6 +7,7 @@ Purpose: Rock the Casbah
 
 import argparse
 import sys
+from pprint import pprint
 
 # --------------------------------------------------
 def get_args():
@@ -43,8 +44,13 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
+
+    codon_table = {}
     for line in args.codons:
-        print(line.rstrip().split())
+        key, value = line.rstrip().split()
+        codon_table[key] = value
+    pprint(codon_table) # pretty print 
+
 
 # --------------------------------------------------
 if __name__ == '__main__':
