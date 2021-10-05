@@ -16,7 +16,7 @@ def get_args():
         description='Translate DNA/RNA to proteins',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('nucleotides',
+    parser.add_argument('sequence',
                         metavar='str',
                         nargs='*',
                         help='DNA/RNA sequence')
@@ -25,12 +25,14 @@ def get_args():
                         '--codons',
                         help='A file with codon translations',
                         metavar='FILE',
+                        required=True,
                         type=argparse.FileType('rt'))
 
     parser.add_argument('-o',
                         '--outfile',
                         help='Output filename',
                         metavar='FILE',
+                        type=argparse.FileType('wt'),
                         default='out.txt')
 
     return parser.parse_args()
@@ -41,14 +43,9 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
-    seq = args.nucleotides
-    fh_in = args.codons
-    fh_out = args.outfile
-    
-
-
-    print(args)
-
+    print('seq =', args.sequence)
+    print('codons =', args.codons)
+    print('outfile =', args.outfile)
 
 # --------------------------------------------------
 if __name__ == '__main__':
