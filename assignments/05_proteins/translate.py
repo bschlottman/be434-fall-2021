@@ -6,8 +6,7 @@ Purpose: Rock the Casbah
 """
 
 import argparse
-import sys
-from pprint import pprint
+
 
 # --------------------------------------------------
 def get_args():
@@ -17,10 +16,7 @@ def get_args():
         description='Translate DNA/RNA to proteins',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('sequence',
-                        metavar='str',
-                        nargs='*',
-                        help='DNA/RNA sequence')
+    parser.add_argument('sequence', metavar='str', help='DNA/RNA sequence')
 
     parser.add_argument('-c',
                         '--codons',
@@ -49,7 +45,13 @@ def main():
     for line in args.codons:
         key, value = line.rstrip().split()
         codon_table[key] = value
-    pprint(codon_table) # pretty print 
+
+    k = 3
+    seq = args.sequence.upper()
+    for codon in [seq[i:i + k] for i in range(0, len(seq), k)]:
+        print(codon_table.get(codon, '-'), end='', file=args.outfile)
+    print(file=args.outfile)
+    print(f'Output written to "{args.outfile.name}".')
 
 
 # --------------------------------------------------
