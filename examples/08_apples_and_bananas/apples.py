@@ -18,16 +18,14 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('text', metavar='str', help='Input text or file')
-    # Take a positional argument that might be some plain text
-    parser.add_argument(
-        '-v',
-        '--vowel',
-        help='The vowel to substitute',
-        choices=['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'],
-        metavar='str',
-        type=str,
-        default='a')
-    # or may name a file
+
+    parser.add_argument('-v',
+                        '--vowel',
+                        help='The vowel to substitute',
+                        choices=['a', 'e', 'i', 'o', 'u'],
+                        metavar='vowel',
+                        default='a')
+
     args = parser.parse_args()
 
     if os.path.isfile(args.text):
