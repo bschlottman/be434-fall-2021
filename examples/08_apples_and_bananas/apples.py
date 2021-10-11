@@ -44,7 +44,7 @@ def main():
     text = args.text
     vowel = args.vowel
     vowel_dict_low = list('aeiou')
-    vowel_dict_up = vowel_dict_low.upper()
+    vowel_dict_up = list('AEIOU')
     new_text = []
 
     for char in text:
