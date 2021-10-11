@@ -48,11 +48,14 @@ def main():
 
     k = 3
     seq = args.sequence.upper()
+    protein = ''
     for codon in [seq[i:i + k] for i in range(0, len(seq), k)]:
-        print(codon_table.get(codon, '-'), end='', file=args.outfile)
-    print(file=args.outfile)
+        protein += codon_table.get(codon, '-')
+    #     print(codon_table.get(codon, '-'), end='', file=args.outfile)
+    # print(file=args.outfile)
+    # print(f'Output written to "{args.outfile.name}".')
+    print(protein, file=args.outfile)
     print(f'Output written to "{args.outfile.name}".')
-
 
 # --------------------------------------------------
 if __name__ == '__main__':
