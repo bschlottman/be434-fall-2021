@@ -6,7 +6,7 @@ Purpose: Find common words
 """
 
 import argparse
-
+import os
 
 # --------------------------------------------------
 def get_args():
@@ -49,10 +49,7 @@ def main():
     pos_arg = args.positional
 
     print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+
 
 
 # --------------------------------------------------
