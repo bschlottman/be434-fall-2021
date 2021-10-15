@@ -9,9 +9,10 @@ import argparse
 import re
 import sys
 
+
 # --------------------------------------------------
 def get_args():
-    """Get command-line arguments"""
+    """Get command-line shmarguments"""
 
     parser = argparse.ArgumentParser(
         description='Expand IUPAC codes',
@@ -29,16 +30,15 @@ def get_args():
                         type=argparse.FileType('wt'),
                         default=sys.stdout)
 
-
     return parser.parse_args()
 
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Do a flip here"""
 
     args = get_args()
-    
+
     print(args)
 
 
