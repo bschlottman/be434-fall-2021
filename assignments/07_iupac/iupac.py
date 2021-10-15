@@ -19,6 +19,7 @@ def get_args():
 
     parser.add_argument('seq',
                         metavar='SEQ',
+                        nargs='+',
                         help='Input sequence(s)')
 
     parser.add_argument('-o',
