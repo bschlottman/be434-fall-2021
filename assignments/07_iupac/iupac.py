@@ -38,8 +38,38 @@ def main():
     """Do a flip here"""
 
     args = get_args()
+    sequence_list = args.seq
 
-    print(args)
+    Bases = {
+        'A': 'A',
+        'C': 'C',
+        'G': 'G',
+        'T': 'T',
+        'U': 'U',
+        'R': 'AG',
+        'Y': 'CT',
+        'S': 'GC',
+        'W': 'AT',
+        'K': 'GT',
+        'M': 'AC',
+        'B': 'CGT',
+        'D': 'AGT',
+        'H': 'ACT',
+        'V': 'ACG',
+        'N': 'ACGT'
+    }
+
+    for code in sequence_list:
+        outseq = ""
+        outre = ""
+        for char in code:
+            if len(Bases.get(char)) > 1:
+                outseq = outseq + char
+                outre = outre + '[{}]'.format(Bases.get(char))
+            else:
+                outseq = outseq + char
+                outre = outre + Bases.get(char)
+    print('{} {}'.format(sequence_list, outseq, outre))
 
 
 # --------------------------------------------------
