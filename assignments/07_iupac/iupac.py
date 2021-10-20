@@ -6,7 +6,6 @@ Purpose: Rock the Rialto
 """
 
 import argparse
-import re
 import sys
 
 
@@ -38,7 +37,6 @@ def main():
     """Do a flip here"""
 
     args = get_args()
-    sequence_list = args.seq
 
     Bases = {
         'A': 'A',
@@ -59,17 +57,22 @@ def main():
         'N': 'ACGT'
     }
 
-    for code in sequence_list:
-        outseq = ""
-        outre = ""
-        for char in code:
+    for seq in args.seq:
+        seq_out = ""
+        regexp_out = ""
+
+        for char in seq:
             if len(Bases.get(char)) > 1:
-                outseq = outseq + char
-                outre = outre + '[{}]'.format(Bases.get(char))
+                seq_out = seq_out + char
+                regexp_out = regexp_out + '[{}]'.format(Bases.get(char))
             else:
-                outseq = outseq + char
-                outre = outre + Bases.get(char)
-    print('{} {}'.format(sequence_list, outseq, outre))
+                seq_out = seq_out + char
+                regexp_out = regexp_out + Bases.get(char)
+
+        print('{} {}'.format(seq_out, regexp_out), file=args.outfile)
+
+    if args.outfile is not sys.stdout:
+        print('Done, see output in "{}"'.format(args.outfile.name))
 
 
 # --------------------------------------------------
