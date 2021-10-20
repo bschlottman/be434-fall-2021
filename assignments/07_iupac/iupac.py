@@ -70,8 +70,8 @@ def main():
                 regexp_out = regexp_out + Bases.get(char)
 
         print('{} {}'.format(seq_out, regexp_out), file=args.outfile)
-
-    if args.outfile is not sys.stdout:
+# '!=' same as 'is not'
+    if args.outfile != sys.stdout:
         print('Done, see output in "{}"'.format(args.outfile.name))
 
 
