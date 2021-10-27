@@ -56,7 +56,7 @@ def main():
     commonk = sorted(list(set(k1).intersection(k2)))
 
     for kmers in commonk:
-        print('{:10} {:6} {:6}'.format(kmers, k1.get(kmers), k2.get(kmers)),
+        print('{:10}{:6}{:6}'.format(kmers, k1.get(kmers), k2.get(kmers)),
               end = '\n')
 
 
