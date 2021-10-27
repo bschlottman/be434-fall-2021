@@ -1,4 +1,5 @@
 # Finding Common K-mers
+from KYClark "There is a mistake in the README for the "kmers.py" program. I specify the output columns should be 10, 5, and 5, but I neglected that I also put a space in between my columns, so really you should use 10, 6, and 6."
 
 In this exercise, you will build on the `common.py` assignment to find the common k-mers between two files.
 You will create a Python program called `kmers.py` that accepts two readable text files and an optional `-k|--kmer` argument that accepts an integer value greater than 0 and which defaults to 3.
