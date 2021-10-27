@@ -43,7 +43,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Make a ski noise here"""
 
     args = get_args()
     F1 = args.FILE1
