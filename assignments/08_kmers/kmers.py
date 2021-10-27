@@ -18,16 +18,16 @@ def get_args():
 
     parser.add_argument('FILE1',
                         metavar='FILE1',
-                        help='input Files to compare',
+                        help='input File to compare',
                         type=argparse.FileType('rt'))
 
     parser.add_argument('FILE2',
                         metavar='FILE2',
-                        help='input Files to compare',
+                        help='input File to compare',
                         type=argparse.FileType('rt'))
 
     parser.add_argument('-k',
-                        '--kmers',
+                        '--kmer',
                         help='K-mer size',
                         metavar='int',
                         type=int,
@@ -35,8 +35,8 @@ def get_args():
 
     args = parser.parse_args()
 
-    if args.kmers < 1:
-        parser.error(f'--kmers "{args.kmers}" must be > 0')
+    if args.kmer < 1:
+        parser.error(f'--kmer "{args.kmer}" must be > 0')
 
     return args
 
@@ -48,7 +48,7 @@ def main():
     args = get_args()
     F1 = args.FILE1
     F2 = args.FILE2
-    kmers = args.kmers
+    kmers = args.kmer
 
     k1 = count_kmers(F1, kmers)
     k2 = count_kmers(F2, kmers)
@@ -62,16 +62,16 @@ def main():
 
 # --------------------------------------------------
 def count_kmers(file, k):
-    """Create a dictionary of kmers in each file"""
+    """Create a dictionary of kmers from each file"""
     
     mers = {}
     for line in file:
         for word in line.split():
             for kmers in find_kmers(word, k):
                 if kmers in mers:
-                    words[kmers] += 1
+                    mers[kmers] += 1
                 else:
-                    words[kmers] = 1
+                    mers[kmers] = 1
     return mers
 
 
@@ -85,5 +85,18 @@ def find_kmers(seq, k):
 
 
 # --------------------------------------------------
+def test_find_kmers():
+    """ Test find_kmers """
+
+    assert find_kmers('', 1) == []
+    assert find_kmers('ACTG', 1) == ['A', 'C', 'T', 'G']
+    assert find_kmers('ACTG', 2) == ['AC', 'CT', 'TG']
+    assert find_kmers('ACTG', 3) == ['ACT', 'CTG']
+    assert find_kmers('ACTG', 4) == ['ACTG']
+    assert find_kmers('ACTG', 5) == []
+
+
+# --------------------------------------------------
+
 if __name__ == '__main__':
     main()
