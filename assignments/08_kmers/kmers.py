@@ -57,13 +57,13 @@ def main():
 
     for kmers in commonk:
         print('{:10}{:6}{:6}'.format(kmers, k1.get(kmers), k2.get(kmers)),
-              end = '\n')
+              end='\n')
 
 
 # --------------------------------------------------
 def count_kmers(file, k):
     """Create a dictionary of kmers from each file"""
-    
+
     mers = {}
     for line in file:
         for word in line.split():
