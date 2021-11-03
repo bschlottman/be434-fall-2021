@@ -1,53 +1,41 @@
 #!/usr/bin/env python3
 """
-Author : lillymoore <lillymoore@localhost>
+Author : bschlottman <bschlottman@email.arizona.edu>
 Date   : 2021-11-02
-Purpose: Rock the Casbah
+Purpose: FASTA Interleaved Paired Read Splitter
 """
 
 import argparse
-
+import os
 
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='split interleaved FASTA sequence files',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
-                        metavar='str',
-                        help='A positional argument')
-
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
+    parser.add_argument('FILE',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
-                        default=None)
+                        nargs='+',
+                        help='A positional argument')
 
     parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
+                        '--outdir',
+                        help='A named string argument',
+                        metavar='DIR',
+                        type=str,
+                        default='split')
 
-    return parser.parse_args()
+    args = parser.parse_args()
 
+    check_dir = os.path.join(os.getcwd(), args.outdir)
+    if not os.path.isdir(check_dir):
+        os.mkdir(check_dir)
+
+    return args
 
 # --------------------------------------------------
 def main():
