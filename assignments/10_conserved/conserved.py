@@ -30,11 +30,7 @@ def main():
     """Make a ski noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+   
 
     print(f'str_arg = "{str_arg}"')
     print(f'int_arg = "{int_arg}"')
