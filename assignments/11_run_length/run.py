@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Author : lillymoore <lillymoore@localhost>
+Author : bschlottman <bschlottman@email.arizona.edu>
 Date   : 2021-11-15
 Purpose: Rock the Casbah
 """
 
 import argparse
+import os
 
 
 # --------------------------------------------------
@@ -16,18 +17,22 @@ def get_args():
         description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('sequences',
+    parser.add_argument('sequence',
                         metavar='str',
-                        help='A positional argument')
+                        help='a sequence to encode or a file')
 
-    
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if os.path.isfile(args.sequence):
+        args.sequence = open(args.sequence).read().rstrip()
+
+    return args
 
 
 # --------------------------------------------------
 def main():
     args = get_args()
-    for seq in args.text.splitlines():
+    for seq in args.sequence.splitlines():
         print(rle(seq))
 
 
@@ -47,8 +52,8 @@ def test_rle():
     assert rle('AA') == 'A2'
     assert rle('AAAAA') == 'A5'
     assert rle('ACCGGGTTTT') == 'AC2G3T4'
-# --------------------------------------------------
-   
-    if __name__ == '__main__':
-        main()
 
+
+# --------------------------------------------------
+if __name__ == '__main__':
+    main()
