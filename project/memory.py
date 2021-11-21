@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Author : lillymoore <lillymoore@localhost>
+Author : bschlottman <bschlottman@email.arizona.edu>
 Date   : 2021-11-16
-Purpose: Rock the Casbah
+Purpose: test your memory
 """
 
 import argparse
@@ -16,55 +16,28 @@ def get_args():
         description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
+    parser.add_argument('string',
                         metavar='str',
-                        help='A positional argument')
-
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
-
+                        help='Initial str of length 5')
+    # parser error if an initial str of length 5 is not given
+    parser.error()
     return parser.parse_args()
 
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """bring in a new random string on a new line, 
+        & replace old line with | | | | |, keeping line position"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    import random
+    import string
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    # printing lowercase
+    letters = string.ascii_lowercase
+    print ( ''.join(random.choice(letters) for i in range(10)) )
+    for args.positional:
+        print(args.positional) if args.positional is > str[:6]
 
 
 # --------------------------------------------------
