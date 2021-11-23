@@ -5,7 +5,7 @@ Date   : 2021-11-16
 Purpose: test your memory
 """
 
-import argparse
+import argparse, os, random, string
 
 
 # --------------------------------------------------
@@ -13,15 +13,38 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Find out if your memory works',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('string',
                         metavar='str',
                         help='Initial str of length 5')
     # parser error if an initial str of length 5 is not given
-    parser.error()
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if len(args.string) != 5:
+        parser.error(f'input string "{args.string}" must be 5 characters long')
+
+    return args
+
+
+# --------------------------------------------------
+def memgame(a_str):
+    """"""
+
+    # carriage return: \r (character returns to beginning of line after print)
+    all_chars = a_str
+    letters = string.ascii_lowercase
+    
+    while True:
+        usr_input = input(a_str + ' ')
+        if usr_input != all_chars:
+            print('You failed!')
+            break
+        new_chars = ''.join([random.choice(letters) for i in range(5)])
+        a_str = new_chars
+        all_chars += ' ' + new_chars
+        os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # --------------------------------------------------
@@ -30,14 +53,13 @@ def main():
         & replace old line with | | | | |, keeping line position"""
 
     args = get_args()
-    import random
-    import string
+    memgame(args.string)
 
     # printing lowercase
-    letters = string.ascii_lowercase
-    print ( ''.join(random.choice(letters) for i in range(10)) )
-    for args.positional:
-        print(args.positional) if args.positional is > str[:6]
+    #letters = string.ascii_lowercase
+    #print ( ''.join(random.choice(letters) for i in range(10)) )
+    #for args.positional:
+    #   print(args.positional) if args.positional is > str[:6]
 
 
 # --------------------------------------------------
