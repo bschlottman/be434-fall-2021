@@ -6,7 +6,9 @@ Purpose: grep the Casbah
 """
 
 import argparse
+import re
 import sys
+
 
 # --------------------------------------------------
 def get_args():
@@ -16,24 +18,22 @@ def get_args():
         description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('PATTERN',
-                        metavar='PATTERN',
-                        help='Search pattern')
-    
-    parser.add_argument('FILE',
-                        metavar='FILE',
+    parser.add_argument('pattern', metavar='PATTERN', help='Search pattern')
+
+    parser.add_argument('files',
+                        metavar='Input file(s)',
+                        nargs='+',
                         type=argparse.FileType('rt'),
                         help='Input file(s)')
-    
+
     parser.add_argument('-i',
                         '--insensitive',
-                        metavar='',
                         help='Case-insensitive search',
-                        default= False)
+                        action='store_true')
 
     parser.add_argument('-o',
                         '--outfile',
-                        help='Output',
+                        help='Output file',
                         metavar='FILE',
                         type=argparse.FileType('wt'),
                         default=sys.stdout)
@@ -46,17 +46,15 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    num_files = len(args.files)
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    for fh in args.files:
+        for line in fh:
+            if re.search(args.pattern, line, re.I if args.insensitive else 0):
+                # print('{}{}'.format(f'{fh.name}:' if num_files > 1 else '',
+                #                     line, end='', file=args.outfile)
+                args.outfile.write('{}{}'.format(
+                    f'{fh.name}:' if num_files > 1 else '', line))
 
 
 # --------------------------------------------------
