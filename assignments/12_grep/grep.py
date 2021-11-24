@@ -56,6 +56,12 @@ def main():
                 args.outfile.write('{}{}'.format(
                     f'{fh.name}:' if num_files > 1 else '', line))
 
+    pattern = re.compile(args.pattern, re.I if args.insensitive else 0)
+    for fh in args.files:
+        for line in filter(pattern.search, fh):
+            args.outfile.write('{}{}'.format(
+                f'{fh.name}:' if num_files > 1 else '', line))
+
 
 # --------------------------------------------------
 if __name__ == '__main__':
