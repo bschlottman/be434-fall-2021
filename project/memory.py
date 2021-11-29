@@ -10,7 +10,7 @@ import argparse, os, random, string
 
 # --------------------------------------------------
 def get_args():
-    """Get the command-line arguments"""
+    """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
         description='Find out if your memory works',
