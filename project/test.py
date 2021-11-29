@@ -1,8 +1,8 @@
 """ Tests for memory.py """
 
-from subprocess import getstatusoutput
+#from subprocess import getstatusoutput
 import os
-Import re
+#import re
 
 
 PRG = './memory.py'
@@ -15,30 +15,8 @@ def test_exists():
 
     assert os.path.isfile(PRG)
 
-
 # --------------------------------------------------
-def test_usage():
-    """ Prints usage """
+def test_input():
+    """ ensure the game gives back the initial string to begin """
 
-    for flag in ['-h', '--help']:
-        rv, out = getstatusoutput('{} {}'.format(PRG, flag))
-        assert rv == 0
-        assert re.match("usage", out, re.IGNORECASE)
-
-
-# --------------------------------------------------
-def test_no_args():
-    """ Dies on no args """
-
-    rv, out = getstatusoutput(PRG)
-    assert rv != 0
-    assert re.match("usage", out, re.IGNORECASE)
-
-
-# --------------------------------------------------
-def test_missing_input():
-    """ Dies on missing input """
-
-    rv, out = getstatusoutput('{} -c codons.RNA'.format(PRG))
-    assert rv != 0
-    assert re.match("usage", out, re.IGNORECASE)
+    
