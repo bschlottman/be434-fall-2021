@@ -7,6 +7,8 @@ Purpose: FASTA Interleaved Paired Read Splitter
 
 import argparse
 import os
+from Bio import SeqIO
+
 
 # --------------------------------------------------
 def get_args():
@@ -16,43 +18,41 @@ def get_args():
         description='split interleaved FASTA sequence files',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('FILE',
+    parser.add_argument('files',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
                         nargs='+',
-                        help='A positional argument')
+                        help='Input file(s)')
 
     parser.add_argument('-o',
                         '--outdir',
-                        help='A named string argument',
-                        metavar='DIR',
+                        help='Output directory',
+                        metavar='str',
                         type=str,
                         default='split')
 
-    args = parser.parse_args()
-
-    check_dir = os.path.join(os.getcwd(), args.outdir)
-    if not os.path.isdir(check_dir):
-        os.mkdir(check_dir)
-
-    return args
+    return parser.parse_args()
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    out_dir = args.outdir
+    if not os.path.isdir(out_dir):
+        os.makedirs(out_dir)
+
+    for fh in args.files:
+        root, ext = os.path.splitext(os.path.basename(fh.name))
+        forward = open(os.path.join(out_dir, root + '_1' + ext), 'wt')
+        reverse = open(os.path.join(out_dir, root + '_2' + ext), 'wt')
+        parser = SeqIO.parse(fh, 'fasta')
+
+        for i, rec in enumerate(parser):
+            SeqIO.write(rec, forward if i % 2 == 0 else reverse, 'fasta')
+
+    print(f'Done, see output in "{out_dir}"')
 
 
 # --------------------------------------------------
