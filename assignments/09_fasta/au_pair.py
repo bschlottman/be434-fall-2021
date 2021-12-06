@@ -33,6 +33,7 @@ def get_args():
 
     return parser.parse_args()
 
+
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
@@ -45,8 +46,12 @@ def main():
 
     for fh in args.files:
         root, ext = os.path.splitext(os.path.basename(fh.name))
-        forward = open(os.path.join(out_dir, root + '_1' + ext), 'wt', encoding='UTF-8')
-        reverse = open(os.path.join(out_dir, root + '_2' + ext), 'wt', encoding='UTF-8')
+        forward = open(os.path.join(out_dir, root + '_1' + ext),
+                       'wt',
+                       encoding='UTF-8')
+        reverse = open(os.path.join(out_dir, root + '_2' + ext),
+                       'wt',
+                       encoding='UTF-8')
         parser = SeqIO.parse(fh, 'fasta')
 
         for i, rec in enumerate(parser):
