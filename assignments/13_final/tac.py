@@ -30,19 +30,22 @@ def get_args():
                         metavar='FILE',
                         type=argparse.FileType('wt'),
                         default=sys.stdout)
-    args = parser.parse_args()
 
-    if args.files != argparse.FileType('rt', encoding='UTF-8'):
-        parser.error(f"can't open {args.files}")
-    else:
-        return args # not sure this is the right way... need to figure out how to read in the input file...
+    return parser.parse_args()
+
+
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Thank Ken here"""
 
     args = get_args()
-
-    print(args)
+    for fh in args.files:
+        line = []
+        for chars in fh:
+            line.append(chars.strip())
+        line.reverse()
+        for chars in line:
+            print(chars, file=args.outfile)
 
 
 # --------------------------------------------------
